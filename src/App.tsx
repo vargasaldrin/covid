@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import GlobalStyle from "./GlobalStyle";
 
 import {
   BlogCreate,
@@ -13,6 +14,7 @@ import {
 function App() {
   return (
     <div className="App">
+      <GlobalStyle />
       <Router>
         <Navbar />
         <Switch>

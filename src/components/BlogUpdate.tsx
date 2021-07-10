@@ -8,11 +8,11 @@ interface LocationState {
 }
 
 export default function BlogUpdate() {
+  const history = useHistory();
   const location = useLocation<LocationState>();
   const { keyName, oldContent, oldTitle } = location.state;
   const [title, setTitle] = useState(oldTitle);
   const [content, setContent] = useState(oldContent);
-  const history = useHistory();
 
   const handleContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
@@ -23,6 +23,7 @@ export default function BlogUpdate() {
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const data = {
       title,
       content,
