@@ -40,6 +40,7 @@ export default function BlogUpdate() {
         <input
           type="text"
           name="name"
+          maxLength={24}
           value={title}
           onChange={handleTitle}
           required

@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import GlobalStyle from "./GlobalStyle";
+
+import { ThemeContext } from "./context/Context";
+import { GlobalStyle } from "./components/globalStyles/GlobalStyle";
 
 import {
   BlogCreate,
-  BlogDisplay,
+  BlogShowcase,
   BlogUpdate,
+  EditProfile,
   GraphOne,
   GraphTwo,
   Navbar,
@@ -12,9 +16,11 @@ import {
 } from "./components";
 
 function App() {
+  const { toggleTheme } = useContext(ThemeContext);
+
   return (
     <div className="App">
-      <GlobalStyle />
+      <GlobalStyle toggleTheme={toggleTheme} />
       <Router>
         <Navbar />
         <Switch>
@@ -24,14 +30,22 @@ function App() {
           </Route>
         </Switch>
         <Switch>
-          <Route path="/profile">
+          <Route exact path="/profile">
             <Profile />
           </Route>
         </Switch>
         <Switch>
-          <Route exact path="/blog">
-            <BlogDisplay />
+          <Route path="/profile/edit">
+            <EditProfile />
           </Route>
+        </Switch>
+        <Switch>
+          <Route exact path="/blog">
+            <BlogShowcase />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/blog/:blogName"></Route>
         </Switch>
         <Switch>
           <Route path="/blog/create-blog">

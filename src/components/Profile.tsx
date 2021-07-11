@@ -1,50 +1,42 @@
-import { useState } from "react";
-import EditProfile from "./EditProfile";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+
+import { initialProfile } from "../utilities/constants";
+import { ThemeContext } from "../context/Context";
+import { Button, Container, Image, Text } from "./styles/Profile.style";
 
 export default function Profile() {
-  const [contact, setContact] = useState("09653273935");
-  const [email, setEmail] = useState("vargasero@gmail.com");
-  const [isEditing, setIsEditing] = useState(false);
-  const [name, setName] = useState("Aldrin Vargas");
-  const [occupation, setOccupation] = useState("Front End Developer");
+  const { toggleTheme } = useContext(ThemeContext);
+  const getData = localStorage.getItem("profileData");
+  let profileData;
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const id = e.target.id;
-    const value = e.target.value;
-
-    if (id === "contact") {
-      setContact(value);
-    } else if (id === "email") {
-      setEmail(value);
-    } else if (id === "name") {
-      setName(value);
-    } else if (id === "occupation") {
-      setOccupation(value);
-    }
-  };
-
-  const handleClick = () => {
-    setIsEditing(true);
-  };
-
-  if (!isEditing) {
-    return (
-      <div>
-        <img src="./profilepic.jpg" alt="profile" />
-        <div>Name: {name}</div>
-
-        <div>Email: {email}</div>
-        <div>Contact Number: {contact}</div>
-        <div>Occupation: {occupation}</div>
-
-        <button onClick={handleClick}>Edit Profile</button>
-      </div>
-    );
+  if (getData) {
+    const newProfile = JSON.parse(getData);
+    profileData = newProfile;
   } else {
-    return (
-      <EditProfile
-        data={{ contact, email, handleChange, name, occupation, setIsEditing }}
-      />
-    );
+    localStorage.setItem("profileData", JSON.stringify(initialProfile));
+    profileData = initialProfile;
   }
+
+  return (
+    <Container>
+      <Image src="./profilepic.jpeg" alt="profile" />
+      <Text toggleTheme={toggleTheme}>
+        Name: <span>{profileData.name}</span>
+      </Text>
+
+      <Text toggleTheme={toggleTheme}>
+        Email: <span>{profileData.email}</span>
+      </Text>
+      <Text toggleTheme={toggleTheme}>
+        Contact Number: <span>{profileData.contact}</span>
+      </Text>
+      <Text toggleTheme={toggleTheme}>
+        Occupation: <span>{profileData.occupation}</span>
+      </Text>
+      <Link to="/profile/edit">
+        <Button toggleTheme={toggleTheme}>Edit Profile</Button>
+      </Link>
+    </Container>
+  );
 }

@@ -1,6 +1,7 @@
 import BlogCreate from "./BlogCreate";
-import BlogDisplay from "./BlogDisplay";
+import BlogShowcase from "./BlogShowcase";
 import BlogUpdate from "./BlogUpdate";
+import EditProfile from "./EditProfile";
 import GraphOne from "./GraphOne";
 import GraphTwo from "./GraphTwo";
 import Navbar from "./Navbar";
@@ -8,8 +9,9 @@ import Profile from "./Profile";
 
 export {
   BlogCreate,
-  BlogDisplay,
+  BlogShowcase,
   BlogUpdate,
+  EditProfile,
   GraphOne,
   GraphTwo,
   Navbar,

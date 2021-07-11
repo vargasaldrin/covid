@@ -1,6 +1,9 @@
 import { Chart, Interval } from "bizcharts";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+
+import { Container, InfoText } from "./styles/GraphOne.style";
 import { COVID_SUMMARY_URL } from "../utilities/constants";
+import { ThemeContext } from "../context/Context";
 
 interface DataObject {
   title: string;
@@ -10,7 +13,13 @@ interface DataObject {
 interface ArrayData extends Array<DataObject> {}
 
 export default function GraphOne() {
-  const [covidSummary, setCovidSummary] = useState<ArrayData | null>(null);
+  const [covidSummary, setCovidSummary] = useState<ArrayData>([
+    {
+      title: "",
+      cases: null,
+    },
+  ]);
+  const { toggleTheme } = useContext(ThemeContext);
 
   useEffect(() => {
     const getData = async () => {
@@ -31,11 +40,22 @@ export default function GraphOne() {
     getData();
   }, []);
 
-  const renderChart = covidSummary && (
+  const renderChart = (
     <Chart height={350} width={500} autoFit data={covidSummary}>
       <Interval position="title*cases" />
     </Chart>
   );
 
-  return <div>{renderChart}</div>;
+  return (
+    <Container>
+      <InfoText toggleTheme={toggleTheme}>
+        <h2>Covid-19 Philippines Summary</h2>
+        <p>
+          A graph presentation showing the summary of COVID-19 total cases,
+          active cases, deaths and recoveries
+        </p>
+      </InfoText>
+      {renderChart}
+    </Container>
+  );
 }

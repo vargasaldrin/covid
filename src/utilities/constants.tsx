@@ -23,3 +23,9 @@ export const REGIONS_PHILIPPINES = [
   "ROF",
   "sample",
 ];
+export const initialProfile = {
+  name: "Rick Sanchez",
+  contact: "09161234567",
+  email: "samplemail@gmail.com",
+  occupation: "Magtataho",
+};

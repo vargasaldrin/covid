@@ -17,8 +17,6 @@ export default function BlogCreate() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const stringList = localStorage.getItem("blogList");
-    console.log(typeof stringList);
-    console.log(stringList);
     const data = {
       title,
       content,
@@ -27,13 +25,12 @@ export default function BlogCreate() {
 
     if (stringList) {
       const oldBlogList = JSON.parse(stringList);
-      const listLength = oldBlogList.length;
-      const blogNumber = listLength + 1;
+      const blogNumber = Math.floor(Math.random() * 1000000);
       keyName = `blog-${blogNumber}`;
       const newList = [...oldBlogList, keyName];
       localStorage.setItem("blogList", JSON.stringify(newList));
     } else {
-      keyName = "blog-1";
+      keyName = "blog-0";
       const newList = [keyName];
       localStorage.setItem("blogList", JSON.stringify(newList));
     }
@@ -49,6 +46,7 @@ export default function BlogCreate() {
         <input
           type="text"
           name="name"
+          maxLength={24}
           value={title}
           onChange={handleTitle}
           required

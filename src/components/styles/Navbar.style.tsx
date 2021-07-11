@@ -1,7 +1,12 @@
 import styled from "styled-components";
 
-export const Container = styled.nav`
+interface ICtn {
+  toggleTheme: boolean;
+}
+
+export const Container = styled.nav<ICtn>`
   font-size: 2rem;
+  background-color: ${(props) => (props.toggleTheme ? "#272727" : "#ffffff")};
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
@@ -19,6 +24,6 @@ export const Container = styled.nav`
     text-decoration: none;
     font-family: "Merriweather Sans", sans-serif;
     font-size: 1.5rem;
-    color: black;
+    color: ${(props) => (props.toggleTheme ? "#ffffff" : "#000000")};
   }
 `;

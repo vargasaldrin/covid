@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Card from "./Card";
+import { Button, CardWrapper, Container } from "./styles/BlogShowcase.style";
+import { ThemeContext } from "../context/Context";
 
-export default function BlogDisplay() {
+export default function BlogShowcase() {
+  const { toggleTheme } = useContext(ThemeContext);
   const [blogs, setBlogs] = useState<any[]>([]);
   const [blogList, setBlogList] = useState<any[]>([]);
 
@@ -40,11 +43,11 @@ export default function BlogDisplay() {
   });
 
   return (
-    <div>
-      {displayBlogs}
+    <Container>
+      <CardWrapper>{displayBlogs}</CardWrapper>
       <Link to="/blog/create-blog">
-        <button>Create new blog post</button>
+        <Button toggleTheme={toggleTheme}>Create new blog post</Button>
       </Link>
-    </div>
+    </Container>
   );
 }

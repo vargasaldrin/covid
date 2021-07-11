@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 
-import Toggle from "./Toggle";
 import { Container } from "./styles/Navbar.style";
+import { ThemeContext } from "../context/Context";
+import Toggle from "./Toggle";
 
 export default function Navbar() {
+  const { toggleTheme } = useContext(ThemeContext);
+
   return (
-    <Container>
+    <Container toggleTheme={toggleTheme}>
       <ul>
         <li>
           <Link to="/">Dashboard</Link>

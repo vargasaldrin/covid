@@ -1,6 +1,9 @@
 import { Chart, Interval } from "bizcharts";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+
 import { COVID_REGION_URL, REGIONS_PHILIPPINES } from "../utilities/constants";
+import { ThemeContext } from "../context/Context";
+import { Container, InfoText } from "./styles/GraphTwo.style";
 
 interface DataObject {
   region: string;
@@ -20,6 +23,7 @@ export default function GraphTwo() {
   const [regionChoice, setRegionChoice] = useState("NCR");
   const [regionGraph, setRegionGraph] = useState<ArrayGraph | null>(null);
   const [regionSummary, setRegionSummary] = useState<ArrayData | null>(null);
+  const { toggleTheme } = useContext(ThemeContext);
 
   useEffect(() => {
     const getData = async () => {
@@ -68,24 +72,33 @@ export default function GraphTwo() {
   });
 
   const renderChart = regionGraph && (
-    <Chart height={320} autoFit data={regionGraph}>
+    <Chart height={350} width={500} autoFit data={regionGraph}>
       <Interval position="title*cases" />
     </Chart>
   );
 
   return (
-    <div>
-      <label htmlFor="region">Choose a region:</label>
+    <Container>
+      <InfoText toggleTheme={toggleTheme}>
+        <h2>COVID-19 Region Summary</h2>
+        <label htmlFor="region">
+          Choose a region:{" "}
+          <select
+            id="region"
+            name="region"
+            onChange={handleChange}
+            value={regionChoice}
+          >
+            {regionOptions}
+          </select>
+        </label>
+        <p>
+          A graph presentation showing the summary of COVID-19 cases,
+          recovieries and deaths per region.
+        </p>
+      </InfoText>
 
-      <select
-        id="region"
-        name="region"
-        onChange={handleChange}
-        value={regionChoice}
-      >
-        {regionOptions}
-      </select>
       {renderChart}
-    </div>
+    </Container>
   );
 }
