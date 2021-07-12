@@ -11,9 +11,8 @@ export const Container = styled.form<IContainer>`
   text-align: center;
   margin: 100px 10%;
 
-  & > h2 {
+  & > h1 {
     font-family: "Merriweather Sans", sans-serif;
-    font-size: 2rem;
     font-weight: 700;
     color: ${(props) => (props.toggleTheme ? "#ffffff" : "#000000")};
     margin-bottom: 50px;

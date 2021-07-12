@@ -34,10 +34,20 @@ export default function Card(props: cardProps) {
 
   return (
     <Wrapper toggleTheme={toggleTheme}>
-      <img src="blog_poster.jpeg" alt="Rick and Morty" />
+      <img src="./blog_poster.jpeg" alt="Rick and Morty" />
       <h2>{props.title}</h2>
-      {/* <p>{props.content}</p> */}
-      <ReadButton>Read Blog</ReadButton>
+      <Link
+        to={{
+          pathname: `/blog/${props.name}`,
+          state: {
+            title: props.title,
+            content: props.content,
+            keyName: props.name,
+          },
+        }}
+      >
+        <ReadButton>Read Blog</ReadButton>
+      </Link>
       <div>
         <Link
           to={{

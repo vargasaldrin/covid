@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router";
+
+import { Container } from "./styles/BlogCreate.style";
+import { ThemeContext } from "../context/Context";
 
 export default function BlogCreate() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const { toggleTheme } = useContext(ThemeContext);
   const history = useHistory();
 
   const handleContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -40,9 +44,12 @@ export default function BlogCreate() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Container toggleTheme={toggleTheme} onSubmit={handleSubmit}>
+      <h2>Create New Blog</h2>
+
       <label>
         Title:
+        <br />
         <input
           type="text"
           name="name"
@@ -53,14 +60,19 @@ export default function BlogCreate() {
         />
       </label>
 
-      <textarea
-        name="paragraph_text"
-        value={content}
-        cols={50}
-        rows={10}
-        onChange={handleContent}
-      ></textarea>
+      <label>
+        Content:
+        <br />
+        <textarea
+          name="paragraph_text"
+          value={content}
+          cols={50}
+          rows={10}
+          onChange={handleContent}
+        ></textarea>
+      </label>
+
       <input type="submit" value="Publish Blog" />
-    </form>
+    </Container>
   );
 }

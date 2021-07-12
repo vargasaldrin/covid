@@ -6,7 +6,7 @@ interface ICtn {
 
 export const Container = styled.nav<ICtn>`
   font-size: 2rem;
-  background-color: ${(props) => (props.toggleTheme ? "#272727" : "#ffffff")};
+  background-color: ${(props) => (props.toggleTheme ? "#272727" : "#B9E2F5")};
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);

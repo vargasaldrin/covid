@@ -2,15 +2,18 @@ import { useContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { ThemeContext } from "./context/Context";
-import { GlobalStyle } from "./components/globalStyles/GlobalStyle";
+import { GlobalStyle } from "./globalStyle/GlobalStyle";
 
 import {
   BlogCreate,
+  BlogDisplay,
   BlogShowcase,
   BlogUpdate,
   EditProfile,
+  Footer,
   GraphOne,
   GraphTwo,
+  GraphThree,
   Navbar,
   Profile,
 } from "./components";
@@ -27,6 +30,7 @@ function App() {
           <Route exact path="/">
             <GraphOne />
             <GraphTwo />
+            <GraphThree />
           </Route>
         </Switch>
         <Switch>
@@ -45,7 +49,9 @@ function App() {
           </Route>
         </Switch>
         <Switch>
-          <Route path="/blog/:blogName"></Route>
+          <Route path="/blog/:blogName">
+            <BlogDisplay />
+          </Route>
         </Switch>
         <Switch>
           <Route path="/blog/create-blog">
@@ -57,6 +63,7 @@ function App() {
             <BlogUpdate />
           </Route>
         </Switch>
+        <Footer />
       </Router>
     </div>
   );

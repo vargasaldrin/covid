@@ -27,6 +27,7 @@ export const Wrapper = styled.div<IContainer>`
 `;
 
 export const ReadButton = styled.button`
+  width: 100%;
   border: none;
   font-family: "Oswald", sans-serif;
   font-weight: 700;

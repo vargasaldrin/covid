@@ -1,7 +1,10 @@
 import { Chart, Interval } from "bizcharts";
 import React, { useContext, useEffect, useState } from "react";
 
-import { COVID_REGION_URL, REGIONS_PHILIPPINES } from "../utilities/constants";
+import {
+  COVID_DATA_REGIONS_URL,
+  REGIONS_PHILIPPINES,
+} from "../utilities/constants";
 import { ThemeContext } from "../context/Context";
 import { Container, InfoText } from "./styles/GraphTwo.style";
 
@@ -27,7 +30,7 @@ export default function GraphTwo() {
 
   useEffect(() => {
     const getData = async () => {
-      const data = await fetch(COVID_REGION_URL)
+      const data = await fetch(COVID_DATA_REGIONS_URL)
         .then((res) => res.json())
         .then((res) => res.data)
         .catch((err) => console.error(err));
@@ -72,7 +75,7 @@ export default function GraphTwo() {
   });
 
   const renderChart = regionGraph && (
-    <Chart height={350} width={500} autoFit data={regionGraph}>
+    <Chart height={350} width={1000} autoFit data={regionGraph}>
       <Interval position="title*cases" />
     </Chart>
   );

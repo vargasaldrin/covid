@@ -7,6 +7,7 @@ interface ITheme {
 export const Container = styled.form<ITheme>`
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin: 100px 10%;
 
   & label {

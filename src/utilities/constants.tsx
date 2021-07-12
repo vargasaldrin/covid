@@ -1,7 +1,8 @@
-export const COVID_SUMMARY_URL =
+export const COVID_DATA_PH_URL =
   "https://covid19-api-philippines.herokuapp.com/api/summary";
-export const COVID_REGION_URL =
+export const COVID_DATA_REGIONS_URL =
   "https://covid19-api-philippines.herokuapp.com/api/top-regions";
+export const COVID_DATA_WORLD_URL = "https://graphql.bitquery.io";
 export const REGIONS_PHILIPPINES = [
   "Region I: Ilocos Region",
   "Region II: Cagayan Valley",
